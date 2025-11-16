@@ -3,22 +3,25 @@ package exam.codewriting.q5;
 public class Computer {
 
 	/*
-	 * We wish to create a Computer class. Specifically, we are interested in keeping track of the state of the computer, i.e. whether the computer is on, off, or in sleep mode. For this problem, you have already been provided with the necessary instance variables for the Computer class.
-
-		Complete each item of the implementation of the class in the designated areas. Use appropriate names, data types, and modifiers based on the story above:
+	 * We wish to create a Computer class. 
+     * Specifically, we are interested in keeping track of the state of the computer, i.e. whether the computer is on, off, or in sleep mode. 
+     * For this problem, you have already been provided with the necessary instance variables for the Computer class.
+     * Complete each item of the implementation of the class in the designated areas. 
+     * Use appropriate names, data types, and modifiers based on the story above:
 	 */
 	
 	// Instance variables - do not change
     private boolean isOn; // true if on, false if off
     private boolean isAsleep; // true if in sleep mode, false otherwise
     
-    // Write the constructor for the Computer class. 
+    // Write the constructor for the Computer class.
+    // When a computer is created it should be completely off. 
+    public Computer(boolean isOn, boolean isAsleep) {
+        this.isOn = false;
+        this.isAsleep = false;
+    }
     // When a computer is created it should be completely off.
-    
-    
-    
-    
-    
+
     /**
      * If the button press is short, the computer should go to sleep (but remain on),
      * or if it is asleep it should wake up.
@@ -28,7 +31,24 @@ public class Computer {
      * @param longPress true if the button press was long, false if it is short
      */
     public void pushPowerButton(boolean longPress) {
-    	//FIXME
+    	if (!longPress) {
+            if (isOn) {
+                if (isAsleep) {
+                    isAsleep = false;
+                } else {
+                    isAsleep = true;
+                }
+            }
+            return;
+        }
+        if (isOn) {
+            isOn = false;
+            isAsleep = false;
+        } 
+        else {
+            isOn = true;
+            isAsleep = false;
+        }
     }
     
     // getters and setters
@@ -47,7 +67,4 @@ public class Computer {
     public void setAsleep(boolean isAsleep) {
         this.isAsleep = isAsleep;
     }
-    
-    
-    
 }
